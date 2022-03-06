@@ -6,18 +6,13 @@
 class Task
 {	
 public:
+	Task(std::function<void()> task);
 	
-	void Sum();
-
-	void Subtraction();
-
-	void Division();
-
-	std::queue<std::function<void() >> execute_tasks;
+	void operator()();
 
 protected:
 
-	int getRandomNumber(int min, int max);
+	std::function<void()> task;
 };
 
 

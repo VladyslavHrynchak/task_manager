@@ -8,16 +8,16 @@ void Taskmanager::Delete()
 	tasks.pop();
 }
 
-function<void()> Taskmanager::Get()
+Task Taskmanager::Get()
 {
 	auto temp = tasks.front();
 	tasks.pop();
 	return temp;
 }
 
-void Taskmanager::Insert(const function<void()> f)
+void Taskmanager::Insert(Task task)
 {
-	tasks.push(f);
+	tasks.push(task);
 }
 
 void Taskmanager::Execute()
@@ -27,7 +27,6 @@ void Taskmanager::Execute()
 		tasks.front()();
 		tasks.pop();
 	}
-	
 }
 
 int Taskmanager::Size() 

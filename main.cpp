@@ -33,6 +33,7 @@ void Sum()
 		}
 	}
 }
+
 void Subtraction()
 {
 	bool is_correct = false;
@@ -59,9 +60,10 @@ void Subtraction()
 int main()
 {
     Taskmanager t;
-	t.Insert(Sum);
-	t.Insert(Subtraction);
-	t.Insert(t.Get());
+	Task sum(Sum);
+	Task subtraction(Subtraction);
+	t.Insert(sum);
+	t.Insert(subtraction);
     t.Execute();
    
     return 0;

@@ -1,22 +1,23 @@
 #pragma once
 #include <functional>
 #include <queue>
+#include "task.h"
 
 class Taskmanager
 {
 public:
 	void Delete();
 
-	void Insert(const std::function<void()> f);
+	void Insert(const Task task);
 
 	void Execute();
 
 	int Size();
 
-	std::function<void()> Get();
+	Task Get();
 
 protected:
 
-	std::queue<std::function<void() >> tasks;
+	std::queue<Task> tasks;
 };
 
