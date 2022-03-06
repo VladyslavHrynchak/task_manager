@@ -1,6 +1,5 @@
 #pragma once
 #include "task.h"
-#include <functional>
 
 class Taskmanager
 {
@@ -9,13 +8,13 @@ public:
 
 	void Get();
 
-	void Insert();
-
-	void Insert(const std::function<void()>& f, const std::string& name);
+	void Insert(const std::function<void()> f);
 
 	void Execute();
 
-private:
+	int Size();
+
+protected:
 
 	Task task;
 };

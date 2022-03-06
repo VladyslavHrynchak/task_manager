@@ -6,37 +6,31 @@ using namespace std;
 void Taskmanager::Delete() 
 {
 	task.execute_tasks.pop();
-	task.list_of_tasks[0].erase();
 }
 
-void Taskmanager::Get() 
+void Taskmanager::Get()
 {
-	task.get_list_of_tasks();
+	task.execute_tasks.push([=] () { task.Sum(); });
+	task.execute_tasks.push([=] () { task.Subtraction(); });
+	task.execute_tasks.push([=] () { task.Division(); });
 }
 
-void Taskmanager::Insert() 
+void Taskmanager::Insert(const function<void()> f)
 {
-	task.set_list_of_tasks();
-	task.execute_tasks.push([&] { task.Sum(); });
-	task.execute_tasks.push([&] { task.Subtraction(); });
-	task.execute_tasks.push([&] { task.Division(); });
-}
-
-void Taskmanager::Insert(const function<void()>& f, const string& name)
-{
-	task.execute_tasks.push([=] { f; });
-	task.list_of_tasks.push_back(name);
+	task.execute_tasks.push( [=] () { f(); });
 }
 
 void Taskmanager::Execute()
 {
-	int i = 0;
+	
 	while (!task.execute_tasks.empty())
 	{
-		cout << task.list_of_tasks[i] << endl;
 		task.execute_tasks.front()();
 		task.execute_tasks.pop();
-		task.list_of_tasks.erase((task.list_of_tasks.begin()));
 	}
 }
 
+int Taskmanager::Size() 
+{
+	return task.execute_tasks.size();
+}
