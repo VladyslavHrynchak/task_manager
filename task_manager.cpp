@@ -5,32 +5,26 @@ using namespace std;
 
 void Taskmanager::Delete() 
 {
-	task.execute_tasks.pop();
+	tasks.pop();
 }
 
-void Taskmanager::Get()
+function<void()> Taskmanager::Get()
 {
-	task.execute_tasks.push([=] () { task.Sum(); });
-	task.execute_tasks.push([=] () { task.Subtraction(); });
-	task.execute_tasks.push([=] () { task.Division(); });
+	return tasks.front();
 }
 
 void Taskmanager::Insert(const function<void()> f)
 {
-	task.execute_tasks.push( [=] () { f(); });
+	tasks.push(f);
 }
 
 void Taskmanager::Execute()
 {
-	
-	while (!task.execute_tasks.empty())
-	{
-		task.execute_tasks.front()();
-		task.execute_tasks.pop();
-	}
+	tasks.front()();
+	tasks.pop();
 }
 
 int Taskmanager::Size() 
 {
-	return task.execute_tasks.size();
+	return tasks.size();
 }

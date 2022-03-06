@@ -1,12 +1,11 @@
 #pragma once
-#include "task.h"
+#include <functional>
+#include <queue>
 
 class Taskmanager
 {
 public:
 	void Delete();
-
-	void Get();
 
 	void Insert(const std::function<void()> f);
 
@@ -14,8 +13,10 @@ public:
 
 	int Size();
 
+	std::function<void()> Get();
+
 protected:
 
-	Task task;
+	std::queue<std::function<void() >> tasks;
 };
 

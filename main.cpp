@@ -33,12 +33,36 @@ void Sum()
 		}
 	}
 }
+void Subtraction()
+{
+	bool is_correct = false;
+	int a = getRandomNumber(1, 10), b = getRandomNumber(1, 10), c = 0, val = 0;
+	while (!is_correct)
+	{
+		cout << "A = " << a << endl;
+		cout << "B = " << b << endl;
+		cout << "Enter " << a << " - " << b << " = ";
+		cin >> val;
+		c = a - b;
+		if (c == val)
+		{
+			is_correct = true;
+			cout << "You answered correctly " << endl;
+		}
+		else
+		{
+			cout << "You answered wrong " << endl << "Try again" << endl;
+		}
+
+	}
+}
 
 int main()
 {
     Taskmanager t;
 	t.Insert(Sum);
-
+	t.Insert(Subtraction);
+	t.Insert(t.Get());
     t.Execute();
    
     return 0;
