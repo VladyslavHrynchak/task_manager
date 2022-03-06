@@ -53,7 +53,6 @@ void Subtraction()
 		{
 			cout << "You answered wrong " << endl << "Try again" << endl;
 		}
-
 	}
 }
 
